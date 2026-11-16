@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang=en>
+
+<head>
+    <meta charset=utf-8>
+    <meta name=viewport content="width=device-width,initial-scale=1">
+    <title>Method · SmogCast Pakistan</title>
+    <link rel=stylesheet href=style.css>
+</head>
+
+<body data-page=meth>
+    <nav><b>Smog<span>Cast</span> PK</b><a data-p=dash href=index.html>Forecast</a><a data-p=eval
+            href=evaluation.html>Evaluation</a><a data-p=meth href=method.html>Method</a></nav>
+    <main>
+        <h1>How it works</h1>
+        <p class=sub>One gradient-boosting model per horizon, trained on hourly data with strictly past-only features.
+        </p>
+        <div class=grid style="margin-top:18px">
+            <div class=card>
+                <h3>1 · Data</h3>134,496 hourly rows, 4 cities, Jan 2023 – Nov 2026. PM2.5/PM10 (CAMS) and weather from
+                Open-Meteo.
+            </div>
+            <div class=card>
+                <h3>2 · Features</h3>39 past features: lags up to 1 week, rolling stats, trends, PM10, weather,
+                hour/month, city. Plus 5 target-hour weather forecast features.
+            </div>
+            <div class=card>
+                <h3>3 · Models</h3>Point forecast, 80% conformal prediction interval and a smog-episode classifier
+                (PM2.5 &gt; 55.4) for horizons 1–24 h.
+            </div>
+            <div class=card>
+                <h3>4 · Validation</h3>Purged time-series CV, 4 baselines, ablation, day-block bootstrap, weather-noise
+                stress test.
+            </div>
+        </div>
+        <h2>Limitations</h2>
+        <div class=card>
+            <ul>
+                <li>PM2.5 comes from the CAMS model, not ground sensors.</li>
+                <li>Past-only forecasts beat persistence by only ~7% at 24 h; most of the gain needs weather forecasts.
+                </li>
+                <li>The "80%" intervals actually covered 70–87% of outcomes across folds (under-covering in Dec/Jan
+                    winter, when volatility exceeds the autumn calibration window).</li>
+                <li>Real forecast-weather error was assumed (0.4σ), not measured.</li>
+            </ul>
+        </div>
+    </main>
+   
+    <script src=app.js></script>
+</body>
+
+</html>

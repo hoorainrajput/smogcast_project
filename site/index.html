@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang=en>
+
+<head>
+    <meta charset=utf-8>
+    <meta name=viewport content="width=device-width,initial-scale=1">
+    <title>Forecast · SmogCast Pakistan</title>
+    <link rel=stylesheet href=style.css>
+</head>
+
+<body data-page=dash>
+    <nav><b>Smog<span>Cast</span> PK</b><a data-p=dash href=index.html>Forecast</a><a data-p=eval
+            href=evaluation.html>Evaluation</a><a data-p=meth href=method.html>Method</a></nav>
+    <main>
+        <h1>Know the air before you breathe it.</h1>
+        <p class=sub>Hour-by-hour PM2.5 forecasts for Lahore, Karachi, Islamabad and Peshawar, up to 24 hours ahead,
+            with an honest uncertainty band.</p>
+        <p class=note>Demo replay: forecast issued <b id=issued></b> (PKT) from the last data in the dataset; the white
+            line shows what actually happened.</p>
+        <div class=tabs id=tabs></div>
+        <div class=grid>
+            <div class=card id=now></div>
+            <div class=card id=peak></div>
+            <div class=card>
+                <div class=mut>Chance PM2.5 exceeds 55.4 (Unhealthy)</div>
+                <div id=p></div>
+            </div>
+        </div>
+        <h2>Next 24 hours</h2>
+        <div class=card><canvas id=cv></canvas>
+            <div class=mut>Teal line = forecast, shaded = 80% prediction interval, white = observed.</div>
+        </div>
+        <h2>Health advisor</h2>
+        <div class=tabs><button class=chip data-prof=General>General</button><button class=chip
+                data-prof=Child>Child</button><button class=chip data-prof=Asthma>Asthma</button><button class=chip
+                data-prof=Athlete>Athlete</button><button class=chip data-prof=Outdoor>Outdoor worker</button></div>
+        <div class=card><b>Advice for the forecast peak:</b> <span id=adv></span></div>
+    </main>
+    <!-- <footer>FYP project · data: Open-Meteo CAMS · not a substitute for official health advice</footer> -->
+    <script src=app.js></script>
+</body>
+
+</html>
