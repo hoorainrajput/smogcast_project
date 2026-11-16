@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang=en>
+
+<head>
+    <meta charset=utf-8>
+    <meta name=viewport content="width=device-width,initial-scale=1">
+    <title>Evaluation · SmogCast Pakistan</title>
+    <link rel=stylesheet href=style.css>
+</head>
+
+<body data-page=eval>
+    <nav><b>Smog<span>Cast</span> PK</b><a data-p=dash href=index.html>Forecast</a><a data-p=eval
+            href=evaluation.html>Evaluation</a><a data-p=meth href=method.html>Method</a></nav>
+    <main>
+        <h1>How good is it, really?</h1>
+        <p class=sub>Rolling-origin cross-validation on five held-out months, including three winter smog months. Four
+            baselines, ablation and bootstrap confidence intervals.</p>
+        <div class=grid id=kpis style="margin-top:18px"></div>
+        <h2>MAE by horizon (µg/m³, lower is better)</h2>
+        <div class=card style="overflow:auto">
+            <table id=tbl></table>
+        </div>
+        <p class=note>Model B uses weather forecasts for the target hour. Training used observed weather as a stand-in,
+            so B's numbers are an upper bound; see the noise-sensitivity chart.</p>
+        <h2>Error vs horizon</h2>
+        <div class=card><img src=assets/mae_vs_horizon.png alt=""></div>
+        <h2>Winter months are the hard test</h2>
+        <div class=card><img src=assets/cv_folds_h24.png alt=""></div>
+        <div class=grid style="margin-top:16px">
+            <div class=card>
+                <h3>Ablation</h3><img src=assets/ablation.png alt="">
+            </div>
+
+            <div class=card>
+                <h3>Noise sensitivity</h3><img src=assets/noise_sensitivity.png alt="">
+            </div>
+
+        </div>
+        <h2>Uncertainty</h2>
+
+        <div class=grid>
+            <div class=card><img src=assets/interval_example.png alt=""></div>
+            <div class=card><img src=assets/interval_coverage.png alt=""></div>
+        </div>
+        
+    </main>
+    
+    <script src=app.js></script>
+</body>
+
+</html>
